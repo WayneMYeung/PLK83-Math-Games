@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a2b">
+    <title>Factor Miner | DSE Math Game</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="game-header">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">π</span>
+          <div>
+            <p class="eyebrow">PLK83 • DSE MATH</p>
+            <h1>Factor Miner</h1>
+          </div>
+        </div>
+        <div class="hud" aria-label="Game status">
+          <div class="hud-card"><span class="hud-label">SCORE</span><strong id="scoreValue">0</strong></div>
+          <div class="hud-card"><span class="hud-label">TIME</span><strong id="timeValue">90s</strong></div>
+          <div class="hud-card"><span class="hud-label">LIVES</span><strong id="livesValue">♥ ♥ ♥</strong></div>
+          <div class="hud-card"><span class="hud-label">PROGRESS</span><strong id="progressValue">0 / 9</strong></div>
+          <div class="hud-card"><span class="hud-label">STREAK BONUS</span><strong id="comboValue">×1.0</strong></div>
+        </div>
+      </header>
+
+      <div class="play-layout">
+        <div class="play-column">
+          <section class="question-panel" aria-live="polite">
+            <span class="question-label" id="tierValue">TIER 1 • S2–S3</span>
+            <p id="promptValue">Enter your student number to start mining.</p>
+          </section>
+
+          <section class="game-board" aria-label="Factor Miner game">
+            <canvas id="gameCanvas" width="960" height="540" aria-label="Gold Miner style math game">
+              Your browser does not support HTML Canvas.
+            </canvas>
+            <div id="gameModal" class="game-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+              <div class="modal-card">
+                <span class="modal-kicker">PLK83 FACTOR MINER</span>
+                <h2 id="modalTitle">Ready to mine?</h2>
+                <p id="modalMessage">Collect every factor. Build a streak, save your lives, and climb the tiers.</p>
+                <form id="startForm" class="start-form" novalidate>
+                  <label for="studentNumber">4-digit student number</label>
+                  <input id="studentNumber" name="studentNumber" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" placeholder="e.g. 4231" required>
+                  <p id="formError" class="form-error" aria-live="polite"></p>
+                  <button id="modalButton" class="primary-button" type="submit">Start mining</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <footer class="game-controls">
+            <p><kbd>SPACE</kbd> or <kbd>CLICK</kbd> to launch</p>
+            <button id="launchButton" class="launch-button" type="button" disabled>Launch claw <span aria-hidden="true">↘</span></button>
+          </footer>
+          <p class="game-note">Read each item carefully: factors earn points; incorrect factors cost points and a life.</p>
+        </div>
+
+        <aside class="leaderboard" aria-labelledby="leaderboardTitle">
+          <div class="leaderboard-heading">
+            <div><p class="eyebrow">PLK83 HIGH SCORES</p><h2 id="leaderboardTitle">Top 10</h2></div>
+            <span class="trophy" aria-hidden="true">🏆</span>
+          </div>
+          <p id="leaderboardStatus" class="leaderboard-status" aria-live="polite">Loading scores…</p>
+          <ol id="leaderboardList" class="leaderboard-list"></ol>
+          <p class="privacy-note">Student numbers are shown as entered.</p>
+        </aside>
+      </div>
+    </main>
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
